@@ -295,36 +295,33 @@ setTimeout(() => popup.remove(), 500);
 });
 
 // ==========================
-// Hero Typing Effect
+// Hero Fade Animation
 // ==========================
 
 const heroTitle = document.querySelector(".hero h1");
 
 if (heroTitle) {
+    heroTitle.style.opacity = "0";
+    heroTitle.style.transform = "translateY(20px)";
 
-const original = heroTitle.innerHTML;
-
-heroTitle.innerHTML = "";
-
-let i = 0;
-
-function typeHero() {
-
-if (i < original.length) {
-
-heroTitle.innerHTML += original.charAt(i);
-
-i++;
-
-setTimeout(typeHero, 25);
-
+    setTimeout(() => {
+        heroTitle.style.transition = "all 0.8s ease";
+        heroTitle.style.opacity = "1";
+        heroTitle.style.transform = "translateY(0)";
+    }, 300);
 }
 
-}
 
-typeHero();
 
-}
+
+
+
+
+
+
+
+
+
 
 // ==========================
 // Live Clock
