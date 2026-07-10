@@ -28,17 +28,19 @@ chatBox.scrollTop = chatBox.scrollHeight;
 // Add AI Message
 function addAIMessage(message){
 
-const div = document.createElement("div");
+    const div = document.createElement("div");
 
-div.className = "ai-message";
+    div.className = "ai-message";
 
-div.innerHTML = message;
+    div.innerHTML = marked.parse(message);
 
-chatBox.appendChild(div);
+    chatBox.appendChild(div);
 
-chatBox.scrollTop = chatBox.scrollHeight;
+    chatBox.scrollTop = chatBox.scrollHeight;
 
 }
+
+
 
 // AI Typing
 function showTyping(){
