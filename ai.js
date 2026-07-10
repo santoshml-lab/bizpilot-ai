@@ -65,3 +65,53 @@ typing.remove();
 }
 
 }
+
+/* ===================================
+   BIZPILOT AI
+   ai.js - PART 2
+=================================== */
+
+async function sendMessage(){
+
+const message = userInput.value.trim();
+
+if(message==="") return;
+
+// User Message
+addUserMessage(message);
+
+userInput.value="";
+
+// Typing Animation
+showTyping();
+
+// Demo AI Response
+setTimeout(()=>{
+
+removeTyping();
+
+addAIMessage(
+"🤖 I received your message:<br><br><b>" +
+message +
+"</b><br><br>In the next step I'll answer using the AI model."
+);
+
+},1200);
+
+}
+
+// Send Button
+sendBtn.addEventListener("click",sendMessage);
+
+// Enter Key
+userInput.addEventListener("keydown",(e)=>{
+
+if(e.key==="Enter" && !e.shiftKey){
+
+e.preventDefault();
+
+sendMessage();
+
+}
+
+});
