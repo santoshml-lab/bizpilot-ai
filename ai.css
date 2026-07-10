@@ -1,526 +1,450 @@
-/* ===================================
+/* ==========================================
    BIZPILOT AI
-   AI CHAT CSS - PART 1
-=================================== */
+   PREMIUM AI CHAT UI
+   PART 1
+========================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 *{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Inter',sans-serif;
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Inter',sans-serif;
 }
 
 :root{
-
---bg:#070B14;
---sidebar:#111827;
---card:#1E293B;
---primary:#2563EB;
---secondary:#00D4FF;
---text:#ffffff;
---muted:#94A3B8;
-
+    --bg:#070B14;
+    --sidebar:#111827;
+    --card:#1E293B;
+    --primary:#2563EB;
+    --secondary:#00D4FF;
+    --text:#FFFFFF;
+    --muted:#94A3B8;
 }
 
 body{
-
-background:var(--bg);
-
-color:white;
-
-overflow:hidden;
-
+    background:var(--bg);
+    color:var(--text);
+    overflow:hidden;
 }
 
 /* Background Glow */
 
 .glow{
-
-position:fixed;
-
-width:600px;
-height:600px;
-
-background:#2563EB22;
-
-filter:blur(180px);
-
-top:-200px;
-left:-150px;
-
-z-index:-1;
-
+    position:fixed;
+    width:600px;
+    height:600px;
+    background:#2563EB22;
+    filter:blur(180px);
+    top:-220px;
+    left:-200px;
+    z-index:-2;
 }
 
 .glow2{
-
-position:fixed;
-
-width:600px;
-height:600px;
-
-background:#00D4FF18;
-
-filter:blur(180px);
-
-bottom:-200px;
-right:-150px;
-
-z-index:-1;
-
+    position:fixed;
+    width:600px;
+    height:600px;
+    background:#00D4FF18;
+    filter:blur(180px);
+    bottom:-220px;
+    right:-200px;
+    z-index:-2;
 }
 
 /* Main Layout */
 
-.main{
-    flex:1;
+.container{
     display:flex;
-    flex-direction:column;
-    overflow:hidden;
+    width:100%;
+    height:100vh;
 }
 
-
-
-/* Sidebar */
+/* ======================
+      SIDEBAR
+====================== */
 
 .sidebar{
-
-width:270px;
-
-background:#111827;
-
-border-right:1px solid rgba(255,255,255,.08);
-
-padding:25px;
-
-display:flex;
-
-flex-direction:column;
-
+    width:270px;
+    background:#101826;
+    border-right:1px solid rgba(255,255,255,.08);
+    display:flex;
+    flex-direction:column;
+    padding:25px;
 }
 
 .logo{
-
-font-size:30px;
-
-font-weight:800;
-
-margin-bottom:30px;
-
+    font-size:28px;
+    font-weight:800;
+    margin-bottom:30px;
 }
 
 .logo span{
-
-color:#2563EB;
-
+    color:var(--primary);
 }
 
 .new-chat{
-
-padding:14px;
-
-border:none;
-
-border-radius:14px;
-
-background:#2563EB;
-
-color:white;
-
-font-size:16px;
-
-font-weight:600;
-
-cursor:pointer;
-
-transition:.3s;
-
-margin-bottom:30px;
-
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:15px;
+    background:linear-gradient(135deg,#2563EB,#00D4FF);
+    color:#fff;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+    margin-bottom:30px;
 }
 
 .new-chat:hover{
-
-background:#1D4ED8;
-
-transform:translateY(-2px);
-
+    transform:translateY(-2px);
+    box-shadow:0 15px 30px rgba(37,99,235,.35);
 }
-
-/* ===================================
-   AI CHAT CSS
-   PART 2
-=================================== */
 
 /* Sidebar Menu */
 
 .menu{
-
-display:flex;
-
-flex-direction:column;
-
-gap:12px;
-
+    display:flex;
+    flex-direction:column;
+    gap:10px;
 }
 
 .menu a{
-
-text-decoration:none;
-
-color:#CBD5E1;
-
-padding:14px 18px;
-
-border-radius:14px;
-
-font-weight:500;
-
-transition:.3s;
-
+    text-decoration:none;
+    color:#CBD5E1;
+    padding:14px 18px;
+    border-radius:14px;
+    transition:.25s;
+    font-size:15px;
+    font-weight:500;
 }
 
 .menu a:hover{
-
-background:#1E293B;
-
-color:white;
-
+    background:#1E293B;
+    color:#fff;
 }
 
 .menu .active{
-
-background:#2563EB;
-
-color:white;
-
+    background:var(--primary);
+    color:white;
 }
 
-/* Main Chat Area */
+/* ======================
+      MAIN AREA
+====================== */
 
 .main{
     flex:1;
     display:flex;
     flex-direction:column;
+    height:100vh;
     overflow:hidden;
 }
 
+/* ==========================================
+   BIZPILOT AI
+   PREMIUM AI CHAT UI
+   PART 2
+========================================== */
 
-
-
-
-/* Top Bar */
+/* ======================
+        TOP BAR
+====================== */
 
 .topbar{
-
-height:75px;
-
-padding:0 30px;
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-border-bottom:1px solid rgba(255,255,255,.08);
-
-background:rgba(17,24,39,.65);
-
-backdrop-filter:blur(20px);
-
+    height:75px;
+    padding:0 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(17,24,39,.75);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .topbar h2{
-
-font-size:24px;
-
-font-weight:700;
-
+    font-size:24px;
+    font-weight:700;
 }
 
 .user{
-
-background:#1E293B;
-
-padding:10px 18px;
-
-border-radius:30px;
-
-font-weight:600;
-
+    padding:10px 18px;
+    background:#1E293B;
+    border-radius:30px;
+    font-weight:600;
+    border:1px solid rgba(255,255,255,.08);
 }
 
-/* Chat Area */
+/* ======================
+        CHAT AREA
+====================== */
 
 .chat-box{
     flex:1;
-    min-height:0;
     overflow-y:auto;
     padding:30px;
     display:flex;
     flex-direction:column;
     gap:20px;
+    scroll-behavior:smooth;
 }
-
-
-
-
-
-
-
-
 
 /* AI Message */
 
 .ai-message{
-
-max-width:70%;
-
-background:#1E293B;
-
-padding:18px 22px;
-
-border-radius:18px;
-
-border-top-left-radius:5px;
-
-line-height:1.8;
-
-box-shadow:0 10px 25px rgba(0,0,0,.25);
-
+    align-self:flex-start;
+    max-width:75%;
+    background:#1E293B;
+    color:white;
+    padding:18px 22px;
+    border-radius:18px;
+    border-top-left-radius:6px;
+    line-height:1.8;
+    font-size:15px;
+    word-wrap:break-word;
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
 }
 
 /* User Message */
 
 .user-message{
-
-align-self:flex-end;
-
-max-width:70%;
-
-background:#2563EB;
-
-padding:18px 22px;
-
-border-radius:18px;
-
-border-top-right-radius:5px;
-
-line-height:1.8;
-
-box-shadow:0 10px 25px rgba(37,99,235,.35);
-
+    align-self:flex-end;
+    max-width:75%;
+    background:linear-gradient(135deg,#2563EB,#00D4FF);
+    color:white;
+    padding:18px 22px;
+    border-radius:18px;
+    border-top-right-radius:6px;
+    line-height:1.8;
+    font-size:15px;
+    word-wrap:break-word;
+    box-shadow:0 8px 20px rgba(37,99,235,.35);
 }
 
-/* ===================================
-   AI CHAT CSS
-   PART 3 (FINAL)
-=================================== */
+/* Markdown */
 
-/* Chat Input */
-
-.chat-input{
-
-display:flex;
-
-align-items:center;
-
-gap:15px;
-
-padding:20px 30px;
-
-border-top:1px solid rgba(255,255,255,.08);
-
-background:rgba(17,24,39,.75);
-
-backdrop-filter:blur(20px);
-
-flex-shrink:0;
-   
-
+.ai-message h1,
+.ai-message h2,
+.ai-message h3{
+    margin:15px 0 10px;
 }
 
-.chat-input textarea{
-
-flex:1;
-
-background:#1E293B;
-
-border:1px solid rgba(255,255,255,.08);
-
-color:white;
-
-padding:16px 20px;
-
-border-radius:18px;
-
-resize:none;
-
-outline:none;
-
-font-size:16px;
-
-min-height:58px;
-
-max-height:160px;
-
+.ai-message p{
+    margin:10px 0;
 }
 
-.chat-input textarea:focus{
-
-border-color:#2563EB;
-
-box-shadow:0 0 15px rgba(37,99,235,.30);
-
+.ai-message ul{
+    margin-left:22px;
 }
 
-.chat-input button{
-
-width:60px;
-
-height:60px;
-
-border:none;
-
-border-radius:50%;
-
-background:linear-gradient(135deg,#2563EB,#00D4FF);
-
-color:white;
-
-font-size:24px;
-
-cursor:pointer;
-
-transition:.3s;
-
+.ai-message li{
+    margin:8px 0;
 }
 
-.chat-input button:hover{
-
-transform:scale(1.08);
-
-box-shadow:0 12px 30px rgba(37,99,235,.40);
-
+.ai-message table{
+    width:100%;
+    border-collapse:collapse;
+    margin-top:15px;
 }
 
-/* Bottom Text */
+.ai-message th,
+.ai-message td{
+    border:1px solid rgba(255,255,255,.12);
+    padding:10px;
+}
 
-.bottom-text{
-
-text-align:center;
-
-padding:12px;
-
-font-size:13px;
-
-color:#94A3B8;
-
+.ai-message th{
+    background:#2563EB;
 }
 
 /* Scrollbar */
 
 .chat-box::-webkit-scrollbar{
-
-width:8px;
-
+    width:8px;
 }
 
 .chat-box::-webkit-scrollbar-thumb{
-
-background:#2563EB;
-
-border-radius:20px;
-
+    background:#2563EB;
+    border-radius:20px;
 }
 
 .chat-box::-webkit-scrollbar-track{
+    background:#101826;
+}
 
-background:#111827;
+/* ==========================================
+   BIZPILOT AI
+   PREMIUM AI CHAT UI
+   PART 3 (FINAL)
+========================================== */
+
+/* ======================
+      CHAT INPUT
+====================== */
+
+.chat-input{
+    display:flex;
+    align-items:flex-end;
+    gap:15px;
+    padding:18px 25px;
+    background:#101826;
+    border-top:1px solid rgba(255,255,255,.08);
+    flex-shrink:0;
+}
+
+.chat-input textarea{
+    flex:1;
+    min-height:58px;
+    max-height:180px;
+    resize:none;
+    outline:none;
+    border:none;
+    border-radius:18px;
+    background:#1E293B;
+    color:#fff;
+    padding:16px 20px;
+    font-size:15px;
+    line-height:1.6;
+    overflow-y:auto;
+    transition:.3s;
+}
+
+.chat-input textarea:focus{
+    box-shadow:0 0 0 2px rgba(37,99,235,.35);
+}
+
+.chat-input textarea::placeholder{
+    color:#94A3B8;
+}
+
+.chat-input button{
+    width:58px;
+    height:58px;
+    border:none;
+    border-radius:50%;
+    cursor:pointer;
+    color:white;
+    font-size:22px;
+    background:linear-gradient(135deg,#2563EB,#00D4FF);
+    transition:.3s;
+}
+
+.chat-input button:hover{
+    transform:scale(1.08);
+    box-shadow:0 12px 30px rgba(37,99,235,.45);
+}
+
+.chat-input button:active{
+    transform:scale(.96);
+}
+
+/* Bottom Text */
+
+.bottom-text{
+    text-align:center;
+    padding:10px;
+    font-size:12px;
+    color:#94A3B8;
+    background:#101826;
+}
+
+/* ======================
+      ANIMATIONS
+====================== */
+
+.ai-message,
+.user-message{
+    animation:fadeIn .25s ease;
+}
+
+@keyframes fadeIn{
+
+from{
+opacity:0;
+transform:translateY(12px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
 
 }
 
-/* Mobile Responsive */
+/* ======================
+      MOBILE
+====================== */
 
 @media(max-width:900px){
 
 .sidebar{
-
-width:80px;
-
+width:75px;
 padding:15px;
-
 }
 
 .logo{
-
 font-size:18px;
-
 }
 
 .logo span{
-
 display:none;
-
-}
-
-.menu a{
-
-font-size:0;
-
-padding:15px;
-
-text-align:center;
-
 }
 
 .new-chat{
-
 font-size:0;
-
 padding:15px;
+}
 
+.menu a{
+font-size:0;
+padding:15px;
+text-align:center;
 }
 
 .topbar{
-
 padding:15px;
-
 }
 
 .topbar h2{
-
 font-size:18px;
-
 }
 
 .user{
-
 display:none;
-
 }
 
 .chat-box{
-
 padding:15px;
-
 }
 
 .ai-message,
-
 .user-message{
-
 max-width:95%;
-
+font-size:14px;
 }
 
 .chat-input{
-
 padding:15px;
+}
 
+.chat-input textarea{
+font-size:14px;
+min-height:52px;
+}
+
+.chat-input button{
+width:52px;
+height:52px;
+font-size:20px;
+}
+
+.bottom-text{
+font-size:11px;
+padding:8px;
 }
 
 }
+
+
