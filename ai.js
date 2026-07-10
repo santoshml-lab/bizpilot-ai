@@ -2,6 +2,7 @@
    BIZPILOT AI
    ai.js - PART 1
 =================================== */
+alert("AI JS Loaded");
 
 const chatBox = document.getElementById("chatBox");
 const userInput = document.getElementById("userInput");
