@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Assistant | BizPilot AI</title>
+
+<link rel="stylesheet" href="ai.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="glow"></div>
+<div class="glow2"></div>
+
+<div class="container">
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+<div class="logo">
+
+🤖 Biz<span>Pilot</span>
+
+</div>
+
+<button id="newChat" class="new-chat">
+
+＋ New Chat
+
+</button>
+
+<div class="menu">
+
+<a href="dashboard.html">🏠 Dashboard</a>
+
+<a class="active">🤖 AI Assistant</a>
+
+<a href="#">📧 Email Writer</a>
+
+<a href="#">📄 Document AI</a>
+
+<a href="#">📅 Planner</a>
+
+<a href="#">💰 Invoice</a>
+
+<a href="#">⚙ Settings</a>
+
+</div>
+
+</div>
+
+<!-- Main Chat -->
+
+<div class="main">
+
+<div class="topbar">
+
+<h2>🤖 AI Business Assistant</h2>
+
+<div class="user">
+
+👤 Santosh
+
+</div>
+
+</div>
+
+<div id="chatBox" class="chat-box">
+
+<div class="ai-message">
+
+👋 Hello Santosh!
+
+<br><br>
+
+I'm your AI Business Assistant.
+
+How can I help you today?
+
+</div>
+
+</div>
+
+<!-- Chat Input -->
+
+<div class="chat-input">
+
+<textarea
+id="userInput"
+placeholder="Ask anything about your business..."
+rows="1">
+</textarea>
+
+<button id="sendBtn">
+
+➤
+
+</button>
+
+</div>
+
+<div class="bottom-text">
+
+✨ BizPilot AI can make mistakes. Please verify important information.
+
+</div>
+
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="supabase.js"></script>
+
+<script src="ai.js"></script>
+
+</body>
+
+</html>  
