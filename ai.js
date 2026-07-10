@@ -24,6 +24,7 @@ chatBox.scrollTop = chatBox.scrollHeight;
 
 }
 
+
 // Add AI Message
 function addAIMessage(message){
 
