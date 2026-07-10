@@ -201,16 +201,15 @@ color:white;
 /* Main Chat Area */
 
 .main{
-
-flex:1;
-
-display:flex;
-
-flex-direction:column;
-
-height:100vh;
-
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    overflow:hidden;
 }
+
+
+
+
 
 /* Top Bar */
 
@@ -258,6 +257,7 @@ font-weight:600;
 
 .chat-box{
     flex:1;
+    min-height:0;
     overflow-y:auto;
     padding:30px;
     display:flex;
