@@ -7,6 +7,7 @@ const chatBox = document.getElementById("chatBox");
 const userInput = document.getElementById("userInput");
 const sendBtn = document.getElementById("sendBtn");
 
+
 // Add User Message
 function addUserMessage(message){
 
@@ -71,34 +72,63 @@ typing.remove();
    ai.js - PART 2
 =================================== */
 
-async function sendMessage(){
+async function sendMessage() {
 
-const message = userInput.value.trim();
+    const message = userInput.value.trim();
 
-if(message==="") return;
+    if (message === "") return;
 
-// User Message
-addUserMessage(message);
+    // User Message
+    addUserMessage(message);
 
-userInput.value="";
+    userInput.value = "";
 
-// Typing Animation
-showTyping();
+    // Typing Animation
+    showTyping();
 
-// Demo AI Response
-setTimeout(()=>{
+    try {
 
-removeTyping();
+        const response = await fetch("https://bizpilot-backend-graw.onrender.com/chat", {
 
-addAIMessage(
-"🤖 I received your message:<br><br><b>" +
-message +
-"</b><br><br>In the next step I'll answer using the AI model."
-);
+            method: "POST",
 
-},1200);
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                message: message
+            })
+
+        });
+
+        const data = await response.json();
+
+        removeTyping();
+
+        if (data.success) {
+
+            addAIMessage(data.reply);
+
+        } else {
+
+            addAIMessage("❌ " + data.error);
+
+        }
+
+    } catch (error) {
+
+        removeTyping();
+
+        addAIMessage("❌ Unable to connect to AI Server.");
+
+        console.error(error);
+
+    }
 
 }
+
+
 
 // Send Button
 sendBtn.addEventListener("click",sendMessage);
