@@ -1,0 +1,433 @@
+/* ===================================
+   BIZPILOT AI LOGIN CSS
+   PART 1
+=================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+body{
+
+background:#070B14;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+height:100vh;
+
+overflow:hidden;
+
+position:relative;
+
+color:white;
+
+}
+
+/* ==========================
+Background Glow
+========================== */
+
+.background-glow{
+
+position:absolute;
+
+width:650px;
+
+height:650px;
+
+background:#2563EB33;
+
+filter:blur(180px);
+
+border-radius:50%;
+
+animation:floatGlow 8s infinite alternate;
+
+z-index:-1;
+
+}
+
+@keyframes floatGlow{
+
+0%{
+
+transform:translate(-100px,-80px);
+
+}
+
+100%{
+
+transform:translate(120px,80px);
+
+}
+
+}
+
+/* ==========================
+Login Container
+========================== */
+
+.login-container{
+
+width:100%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+padding:20px;
+
+}
+
+.login-box{
+
+width:420px;
+
+background:rgba(17,24,39,.88);
+
+backdrop-filter:blur(20px);
+
+padding:40px;
+
+border-radius:24px;
+
+border:1px solid rgba(255,255,255,.08);
+
+box-shadow:0 25px 60px rgba(0,0,0,.35);
+
+}
+
+.login-box h1{
+
+font-size:34px;
+
+text-align:center;
+
+margin-bottom:10px;
+
+}
+
+.login-box p{
+
+text-align:center;
+
+color:#94A3B8;
+
+margin-bottom:30px;
+
+}
+
+/* ===================================
+   BIZPILOT AI LOGIN CSS
+   PART 2
+=================================== */
+
+/* ==========================
+Input Groups
+========================== */
+
+.input-group{
+
+margin-bottom:22px;
+
+}
+
+.input-group label{
+
+display:block;
+
+margin-bottom:8px;
+
+font-size:15px;
+
+font-weight:600;
+
+color:#CBD5E1;
+
+}
+
+.input-group input{
+
+width:100%;
+
+padding:15px 18px;
+
+border-radius:14px;
+
+border:1px solid rgba(255,255,255,.08);
+
+background:#0F172A;
+
+color:white;
+
+font-size:16px;
+
+outline:none;
+
+transition:.3s;
+
+}
+
+.input-group input::placeholder{
+
+color:#64748B;
+
+}
+
+.input-group input:focus{
+
+border-color:#2563EB;
+
+box-shadow:0 0 15px rgba(37,99,235,.35);
+
+}
+
+/* ==========================
+Remember & Forgot
+========================== */
+
+.options{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:25px;
+
+font-size:14px;
+
+}
+
+.remember{
+
+display:flex;
+
+align-items:center;
+
+gap:8px;
+
+color:#CBD5E1;
+
+}
+
+.remember input{
+
+width:16px;
+
+height:16px;
+
+cursor:pointer;
+
+}
+
+.options a{
+
+text-decoration:none;
+
+color:#60A5FA;
+
+transition:.3s;
+
+}
+
+.options a:hover{
+
+color:#00D4FF;
+
+}
+
+/* ===================================
+   BIZPILOT AI LOGIN CSS
+   PART 3 (FINAL)
+=================================== */
+
+/* ==========================
+Login Button
+========================== */
+
+.login-btn{
+
+width:100%;
+
+padding:16px;
+
+border:none;
+
+border-radius:14px;
+
+background:linear-gradient(135deg,#2563EB,#1D4ED8);
+
+color:white;
+
+font-size:17px;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:.35s;
+
+box-shadow:0 15px 35px rgba(37,99,235,.35);
+
+margin-bottom:20px;
+
+}
+
+.login-btn:hover{
+
+transform:translateY(-3px);
+
+box-shadow:0 20px 45px rgba(37,99,235,.45);
+
+}
+
+/* ==========================
+Divider
+========================== */
+
+.divider{
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+margin:20px 0;
+
+color:#94A3B8;
+
+font-size:14px;
+
+}
+
+.divider::before,
+.divider::after{
+
+content:"";
+
+flex:1;
+
+height:1px;
+
+background:rgba(255,255,255,.08);
+
+margin:0 12px;
+
+}
+
+/* ==========================
+Google Button
+========================== */
+
+.google-btn{
+
+width:100%;
+
+padding:15px;
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:14px;
+
+background:#111827;
+
+color:white;
+
+font-size:16px;
+
+font-weight:600;
+
+cursor:pointer;
+
+transition:.35s;
+
+margin-bottom:20px;
+
+}
+
+.google-btn:hover{
+
+background:#1F2937;
+
+border-color:#2563EB;
+
+transform:translateY(-3px);
+
+}
+
+/* ==========================
+Signup Text
+========================== */
+
+.signup-text{
+
+text-align:center;
+
+color:#94A3B8;
+
+font-size:15px;
+
+}
+
+.signup-text a{
+
+color:#60A5FA;
+
+text-decoration:none;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.signup-text a:hover{
+
+color:#00D4FF;
+
+}
+
+/* ==========================
+Responsive
+========================== */
+
+@media(max-width:500px){
+
+.login-box{
+
+width:100%;
+
+padding:30px 20px;
+
+margin:15px;
+
+}
+
+.login-box h1{
+
+font-size:28px;
+
+}
+
+.login-btn,
+.google-btn{
+
+font-size:15px;
+
+}
+
+}
