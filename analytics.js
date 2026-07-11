@@ -8,7 +8,7 @@ const activity = document.getElementById("activity");
 const tool = document.getElementById("tool");
 
 // Backend URL
-const API = "https://YOUR-RENDER-URL.onrender.com/analytics";
+const API = "https://bizpilot-backend-graw.onrender.com/analytics";
 
 loadAnalytics();
 
