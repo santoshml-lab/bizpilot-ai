@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Invoice Generator | BizPilot AI</title>
+
+<link rel="stylesheet" href="invoice.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="glow"></div>
+<div class="glow2"></div>
+
+<div class="container">
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+<div class="logo">
+💼 Biz<span>Pilot</span>
+</div>
+
+<a href="dashboard.html">🏠 Dashboard</a>
+
+<a href="ai.html">🤖 AI Chat</a>
+
+<a href="email.html">📧 Email Writer</a>
+
+<a href="document.html">📄 Document AI</a>
+
+<a class="active">💰 Invoice Generator</a>
+
+<a href="#">📅 Planner</a>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+<div class="topbar">
+
+<h2>💰 AI Invoice Generator</h2>
+
+<div class="user">
+👤 Santosh
+</div>
+
+</div>
+
+<!-- Invoice Form -->
+
+<div class="invoice-card">
+
+<h1>Create Professional Invoice</h1>
+
+<p>Fill the details below to generate a beautiful invoice.</p>
+
+<label>Company Name</label>
+<input type="text" id="company" placeholder="BizPilot AI">
+
+<label>Client Name</label>
+<input type="text" id="client" placeholder="Client Name">
+
+<label>Invoice Number</label>
+<input type="text" id="invoiceNo" placeholder="INV-2026-001">
+
+<label>Invoice Date</label>
+<input type="date" id="invoiceDate">
+
+<label>Service / Item</label>
+<input type="text" id="item" placeholder="Website Development">
+
+<label>Quantity</label>
+<input type="number" id="quantity" value="1">
+
+<label>Price (₹)</label>
+<input type="number" id="price" placeholder="5000">
+
+<label>GST (%)</label>
+<input type="number" id="gst" value="18">
+
+<button id="generateBtn">
+
+🚀 Generate Invoice
+
+</button>
+
+</div>
+
+<!-- Preview -->
+
+<div class="preview-card">
+
+<h2>📄 Invoice Preview</h2>
+
+<div id="invoicePreview">
+
+Your invoice will appear here...
+
+</div>
+
+<div class="actions">
+
+<button id="downloadBtn">
+
+⬇ Download PDF
+
+</button>
+
+<button id="copyBtn">
+
+📋 Copy
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="invoice.js"></script>
+
+</body>
+
+</html>
