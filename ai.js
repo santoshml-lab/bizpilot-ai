@@ -14,9 +14,17 @@ function addUserMessage(message){
 
 const div = document.createElement("div");
 
-div.className = "user-message";
+div.className = "message user-message";
 
-div.innerHTML = message;
+div.innerHTML = `
+<div class="bubble">
+${message}
+</div>
+
+<div class="avatar">
+👤
+</div>
+`;
 
 chatBox.appendChild(div);
 
@@ -25,39 +33,98 @@ chatBox.scrollTop = chatBox.scrollHeight;
 }
 
 
+
+
+
+
 // Add AI Message
 function addAIMessage(message){
 
-    const div = document.createElement("div");
+const div = document.createElement("div");
 
-    div.className = "ai-message";
+div.className = "message ai-message";
 
-    div.innerHTML = marked.parse(message);
+div.innerHTML = `
+<div class="avatar">
+🤖
+</div>
 
-    chatBox.appendChild(div);
+<div class="bubble">
 
-    chatBox.scrollTop = chatBox.scrollHeight;
+<h4 class="ai-title">
+BizPilot AI
+</h4>
+
+${marked.parse(message)}
+
+<div class="message-actions">
+
+<button class="copy-btn">📋 Copy</button>
+
+<button class="regen-btn">🔄</button>
+
+</div>
+
+</div>
+`;
+
+chatBox.appendChild(div);
+
+chatBox.scrollTop = chatBox.scrollHeight;
+
+// Copy Button
+div.querySelector(".copy-btn").onclick = () => {
+
+navigator.clipboard.writeText(message);
+
+};
 
 }
+
+    
 
 
 
 // AI Typing
 function showTyping(){
 
-const div = document.createElement("div");
+const div=document.createElement("div");
 
-div.className = "ai-message";
+div.className="message ai-message";
 
-div.id = "typing";
+div.id="typing";
 
-div.innerHTML = "🤖 Typing...";
+div.innerHTML=`
+
+<div class="avatar">
+🤖
+</div>
+
+<div class="bubble">
+
+<div class="typing">
+
+<span></span>
+
+<span></span>
+
+<span></span>
+
+</div>
+
+</div>
+
+`;
 
 chatBox.appendChild(div);
 
-chatBox.scrollTop = chatBox.scrollHeight;
+chatBox.scrollTop=chatBox.scrollHeight;
 
 }
+
+
+
+
 
 function removeTyping(){
 
