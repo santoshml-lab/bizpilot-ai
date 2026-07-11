@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Document AI | BizPilot AI</title>
+
+<link rel="stylesheet" href="document.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="glow"></div>
+<div class="glow2"></div>
+
+<div class="container">
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+<div class="logo">
+💼 Biz<span>Pilot</span>
+</div>
+
+<a href="dashboard.html">🏠 Dashboard</a>
+
+<a href="ai.html">🤖 AI Chat</a>
+
+<a href="email.html">📧 Email Writer</a>
+
+<a class="active">📄 Document AI</a>
+
+<a href="#">💰 Invoice Generator</a>
+
+<a href="#">📅 Planner</a>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+<div class="topbar">
+
+<h2>📄 AI Document Analyzer</h2>
+
+<div class="user">
+👤 Santosh
+</div>
+
+</div>
+
+<!-- Upload Card -->
+
+<div class="upload-card">
+
+<h1>Upload Your Document</h1>
+
+<p>
+Upload a PDF or DOCX file and let AI analyze it in seconds.
+</p>
+
+<input
+type="file"
+id="documentFile"
+accept=".pdf,.doc,.docx">
+
+<button id="analyzeBtn">
+
+🚀 Analyze Document
+
+</button>
+
+</div>
+
+<!-- Result -->
+
+<div class="result-card">
+
+<h2>📄 AI Analysis</h2>
+
+<div id="result">
+
+Upload a document to get:
+
+<br><br>
+
+✅ Executive Summary
+
+<br>
+
+✅ Key Points
+
+<br>
+
+✅ Important Dates
+
+<br>
+
+✅ Action Items
+
+<br>
+
+✅ Final Conclusion
+
+</div>
+
+<div class="actions">
+
+<button id="copyBtn">
+
+📋 Copy
+
+</button>
+
+<button id="downloadBtn">
+
+⬇ Download
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<script src="document.js"></script>
+
+</body>
+
+</html>
