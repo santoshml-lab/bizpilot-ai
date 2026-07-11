@@ -16,6 +16,8 @@ const generateBtn = document.getElementById("generateBtn");
 const invoicePreview = document.getElementById("invoicePreview");
 const copyBtn = document.getElementById("copyBtn");
 const downloadBtn = document.getElementById("downloadBtn");
+const invoicePrompt = document.getElementById("invoicePrompt");
+const aiGenerate = document.getElementById("aiGenerate");
 
 /* Generate Invoice */
 
@@ -69,6 +71,55 @@ invoicePreview.innerHTML = `
 
 <p>Thank you for your business ❤️</p>
 `;
+
+}
+
+aiGenerate.addEventListener("click", generateAIInvoice);
+
+async function generateAIInvoice() {
+
+    if (invoicePrompt.value.trim() === "") {
+        alert("Please enter an AI prompt.");
+        return;
+    }
+
+    invoicePreview.innerHTML = "🤖 AI is generating invoice...";
+
+    try {
+
+        const response = await fetch("https://bizpilot-backend-graw.onrender.com/invoice-ai", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                prompt: invoicePrompt.value
+            })
+
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+
+            invoicePreview.innerHTML = data.reply;
+
+        } else {
+
+            invoicePreview.innerHTML = "❌ " + data.error;
+
+        }
+
+    } catch (err) {
+
+        console.error(err);
+
+        invoicePreview.innerHTML = "❌ Unable to connect to AI Server.";
+
+    }
 
 }
 
