@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Email Writer | BizPilot AI</title>
+
+<link rel="stylesheet" href="email.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="glow"></div>
+<div class="glow2"></div>
+
+<div class="container">
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+<div class="logo">
+💼 Biz<span>Pilot</span>
+</div>
+
+<a href="dashboard.html">🏠 Dashboard</a>
+<a href="ai.html">🤖 AI Chat</a>
+<a class="active">📧 Email Writer</a>
+<a href="#">📄 Document AI</a>
+<a href="#">💰 Invoice Generator</a>
+<a href="#">📅 Planner</a>
+
+</div>
+
+<!-- Main -->
+
+<div class="main">
+
+<div class="topbar">
+
+<h2>📧 AI Email Writer</h2>
+
+<div class="user">
+👤 Santosh
+</div>
+
+</div>
+
+<div class="email-card">
+
+<h1>Create Professional Emails with AI</h1>
+
+<p>
+Fill the details below and BizPilot AI will generate a professional email instantly.
+</p>
+
+<label>Subject</label>
+
+<input
+type="text"
+id="subject"
+placeholder="Enter email subject">
+
+<label>Email Type</label>
+
+<select id="type">
+
+<option>Professional</option>
+
+<option>Marketing</option>
+
+<option>Follow Up</option>
+
+<option>Complaint</option>
+
+<option>Leave Application</option>
+
+<option>Proposal</option>
+
+<option>Business</option>
+
+</select>
+
+<label>Tone</label>
+
+<select id="tone">
+
+<option>Professional</option>
+
+<option>Formal</option>
+
+<option>Friendly</option>
+
+<option>Polite</option>
+
+<option>Confident</option>
+
+</select>
+
+<label>Describe what you want</label>
+
+<textarea
+id="details"
+rows="8"
+placeholder="Example:
+Write a professional leave email for 2 days because of fever."></textarea>
+
+<button id="generateBtn">
+✨ Generate Email
+</button>
+
+</div>
+
+<div class="result-card">
+
+<h2>Generated Email</h2>
+
+<div id="output">
+
+Your generated email will appear here...
+
+</div>
+
+<div class="actions">
+
+<button id="copyBtn">
+📋 Copy
+</button>
+
+<button id="downloadBtn">
+⬇ Download
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="email.js"></script>
+
+</body>
+
+  </html>
