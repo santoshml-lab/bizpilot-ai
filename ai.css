@@ -306,8 +306,8 @@ box-shadow:0 10px 25px rgba(37,99,235,.30);
 =========================== */
 
 .bubble{
-max-width:85%;
-width:fit-content;
+max-width:90%;
+min-width:220px;
 padding:18px 22px;
 border-radius:20px;
 line-height:1.8;
@@ -315,6 +315,8 @@ font-size:15px;
 overflow-x:auto;
 word-break:break-word;
 }
+
+
 
 
 .ai-message .bubble{
@@ -623,6 +625,32 @@ white-space:nowrap;
 .bubble th{
 background:#2563EB;
 color:white;
+}
+
+/* ===========================
+   TOAST NOTIFICATION
+=========================== */
+
+.toast{
+position:fixed;
+top:100px;
+right:20px;
+background:linear-gradient(135deg,#22C55E,#16A34A);
+color:#fff;
+padding:14px 22px;
+border-radius:12px;
+font-weight:600;
+box-shadow:0 10px 30px rgba(0,0,0,.35);
+opacity:0;
+transform:translateY(-20px);
+transition:all .35s ease;
+z-index:9999;
+pointer-events:none;
+}
+
+.toast.show{
+opacity:1;
+transform:translateY(0);
 }
 
 
