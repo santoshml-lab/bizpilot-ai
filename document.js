@@ -3,96 +3,85 @@
    DOCUMENT AI
 =================================== */
 
+const API_URL = "https://bizpilot-backend-graw.onrender.com/document";
+
 const fileInput = document.getElementById("documentFile");
+const task = document.getElementById("task");
+
 const analyzeBtn = document.getElementById("analyzeBtn");
 
-const result = document.getElementById("result");
+const documentOutput = document.getElementById("documentOutput");
 
-const copyBtn = document.getElementById("copyBtn");
-const downloadBtn = document.getElementById("downloadBtn");
+async function analyzeDocument(){
 
-/* Analyze Document */
+    if(fileInput.files.length===0){
 
-analyzeBtn.addEventListener("click", analyzeDocument);
-
-async function analyzeDocument() {
-
-    if (fileInput.files.length === 0) {
-
-        alert("Please select a PDF or DOCX file.");
+        alert("Please select a document.");
 
         return;
 
     }
 
-    result.innerHTML = "⏳ AI is analyzing your document...";
+    documentOutput.innerHTML=`
 
-    const formData = new FormData();
+    <div class="placeholder">
 
-    formData.append("file", fileInput.files[0]);
+        <div class="placeholder-icon">🤖</div>
 
-    try {
+        <h3>Analyzing Document...</h3>
 
-        const response = await fetch(
-            "https://bizpilot-backend-graw.onrender.com/document",
-            {
-                method: "POST",
-                body: formData
-            }
-        );
+        <p>Please wait...</p>
 
-        const data = await response.json();
+    </div>
 
-        if (data.success) {
+    `;
 
-            result.innerHTML = marked.parse(data.analysis);
+    const formData=new FormData();
 
-        } else {
+    formData.append("file",fileInput.files[0]);
 
-            result.innerHTML = "❌ " + data.error;
+    formData.append("task",task.value);
+
+    try{
+
+        const response=await fetch(API_URL,{
+
+            method:"POST",
+
+            body:formData
+
+        });
+
+        const data=await response.json();
+
+        if(data.success){
+
+            documentOutput.innerHTML = marked.parse(data.analysis);
+
+            
 
         }
 
-    } catch (err) {
+        else{
 
-        console.log(err);
+            documentOutput.innerHTML=
 
-        result.innerHTML = "❌ Unable to connect to AI Server.";
+            `<p>❌ ${data.error}</p>`;
+
+        }
+
+    }
+
+    catch(error){
+
+        documentOutput.innerHTML=
+
+        `<p>❌ Unable to connect to server.</p>`;
+
+        console.error(error);
 
     }
 
 }
 
-/* Copy */
-
-copyBtn.addEventListener("click", () => {
-
-    navigator.clipboard.writeText(result.innerText);
-
-    copyBtn.innerHTML = "✅ Copied";
-
-    setTimeout(() => {
-
-        copyBtn.innerHTML = "📋 Copy";
-
-    }, 2000);
-
-});
-
-/* Download */
-
-downloadBtn.addEventListener("click", () => {
-
-    const blob = new Blob([result.innerText], {
-        type: "text/plain"
-    });
-
-    const a = document.createElement("a");
-
-    a.href = URL.createObjectURL(blob);
-
-    a.download = "Document_Analysis.txt";
-
-    a.click();
-
-});
+analyzeBtn.addEventListener("click",analyzeDocument);
