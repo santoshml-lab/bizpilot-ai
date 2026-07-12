@@ -4,9 +4,10 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Invoice Generator | BizPilot AI</title>
+<title>Invoice AI | BizPilot AI</title>
 
 <link rel="stylesheet" href="invoice.css">
 
@@ -26,20 +27,36 @@
 <div class="sidebar">
 
 <div class="logo">
+
 💼 Biz<span>Pilot</span>
+
 </div>
+
+<button class="new-chat">
+
+💰 New Invoice
+
+</button>
+
+<div class="menu">
 
 <a href="dashboard.html">🏠 Dashboard</a>
 
-<a href="ai.html">🤖 AI Chat</a>
+<a href="ai.html">🤖 AI Assistant</a>
 
 <a href="email.html">📧 Email Writer</a>
 
 <a href="document.html">📄 Document AI</a>
 
-<a class="active">💰 Invoice Generator</a>
+<a class="active">💰 Invoice AI</a>
 
-<a href="#">📅 Planner</a>
+<a href="planner.html">📅 Smart Planner</a>
+
+<a href="analytics.html">📊 Analytics</a>
+
+<a href="#">⚙ Settings</a>
+
+</div>
 
 </div>
 
@@ -52,104 +69,164 @@
 <h2>💰 AI Invoice Generator</h2>
 
 <div class="user">
+
 👤 Santosh
-</div>
-
-</div>
-
-<!-- Invoice Form -->
-
-<div class="invoice-card">
-
-<h1>Create Professional Invoice</h1>
-
-<p>Fill the details below to generate a beautiful invoice.</p>
-
-<label>Company Name</label>
-<input type="text" id="company" placeholder="BizPilot AI">
-
-<label>Client Name</label>
-<input type="text" id="client" placeholder="Client Name">
-
-<label>Invoice Number</label>
-<input type="text" id="invoiceNo" placeholder="INV-2026-001">
-
-<label>Invoice Date</label>
-<input type="date" id="invoiceDate">
-
-<label>Service / Item</label>
-<input type="text" id="item" placeholder="Website Development">
-
-<label>🤖 AI Invoice Prompt</label>
-
-<textarea
-id="invoicePrompt"
-placeholder="Example:
-Create an invoice for website development for ABC Company worth ₹25,000"
-rows="4">
-</textarea>
-
-<button id="aiGenerate">
-🤖 Generate Using AI
-</button>
-
-<label>Quantity</label>
-<input type="number" id="quantity" value="1">
-
-
-
-
-
-<label>Price (₹)</label>
-<input type="number" id="price" placeholder="5000">
-
-<label>GST (%)</label>
-<input type="number" id="gst" value="18">
-
-<button id="generateBtn">
-
-🚀 Generate Invoice
-
-</button>
-
-</div>
-
-<!-- Preview -->
-
-<div class="preview-card">
-
-<h2>📄 Invoice Preview</h2>
-
-<div id="invoicePreview">
-
-Your invoice will appear here...
-
-</div>
-
-<div class="actions">
-
-<button id="downloadBtn">
-
-⬇ Download PDF
-
-</button>
-
-<button id="copyBtn">
-
-📋 Copy
-
-</button>
 
 </div>
 
 </div>
 
+<!-- ===========================
+      INVOICE CONTAINER
+=========================== -->
+
+<div class="invoice-container">
+
+    <!-- LEFT PANEL -->
+
+    <div class="invoice-form">
+
+        <h1>Create Professional Invoice</h1>
+
+        <p>
+
+            Describe the invoice you want and AI will generate it instantly.
+
+        </p>
+
+        <label>Invoice Request</label>
+
+        <textarea
+        id="invoicePrompt"
+        rows="12"
+        placeholder="Example:
+
+Create an invoice for Web Development Service.
+
+Client:
+ABC Pvt Ltd
+
+Service:
+Website Development
+
+Amount:
+₹45,000
+
+GST:
+18%
+
+Payment Terms:
+Within 15 Days">
+
+        </textarea>
+
+        <button id="generateBtn">
+
+            🚀 Generate Invoice
+
+        </button>
+
+    </div>
+
+    <!-- RIGHT PANEL -->
+
+    <div class="preview-card">
+
+        <h2>
+
+            💰 Invoice Preview
+
+        </h2>
+
+        <div id="invoiceOutput">
+
+            <div class="placeholder">
+
+                <div class="placeholder-icon">
+
+                    📄
+
+                </div>
+
+                <h3>No Invoice Generated</h3>
+
+                <p>
+
+                    Enter invoice details and click
+                    <b>Generate Invoice</b>.
+
+                </p>
+
+            </div>
+
+        </div>
+
+              <!-- ACTION BUTTONS -->
+
+        <div class="actions">
+
+            <button id="copyBtn">
+
+                📋 Copy
+
+            </button>
+
+            <button id="downloadBtn">
+
+                ⬇ Download
+
+            </button>
+
+            <button id="printBtn">
+
+                🖨 Print
+
+            </button>
+
+            <button id="editBtn">
+
+                ✏ Edit
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="bottom-text">
+
+✨ BizPilot AI can make mistakes. Please verify important information before using AI-generated invoices.
+
 </div>
 
 </div>
+
+<!-- TOAST -->
+
+<div id="toast" class="toast">
+
+    ✅ Success
+
+</div>
+
+<!-- MARKDOWN -->
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<!-- JS -->
 
 <script src="invoice.js"></script>
 
 </body>
 
 </html>
+
+  
+
+
+  
+  
