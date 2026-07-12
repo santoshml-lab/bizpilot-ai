@@ -1,159 +1,273 @@
 /* ===================================
    BIZPILOT AI
-   invoice.js
+   INVOICE AI
 =================================== */
 
-const company = document.getElementById("company");
-const client = document.getElementById("client");
-const invoiceNo = document.getElementById("invoiceNo");
-const invoiceDate = document.getElementById("invoiceDate");
-const item = document.getElementById("item");
-const quantity = document.getElementById("quantity");
-const price = document.getElementById("price");
-const gst = document.getElementById("gst");
+const API_URL = "https://bizpilot-backend-graw.onrender.com/invoice-ai";
 
 const generateBtn = document.getElementById("generateBtn");
-const invoicePreview = document.getElementById("invoicePreview");
-const copyBtn = document.getElementById("copyBtn");
-const downloadBtn = document.getElementById("downloadBtn");
+
 const invoicePrompt = document.getElementById("invoicePrompt");
-const aiGenerate = document.getElementById("aiGenerate");
 
-/* Generate Invoice */
+const invoiceOutput = document.getElementById("invoiceOutput");
 
-generateBtn.addEventListener("click", generateInvoice);
+async function generateInvoice(){
 
-function generateInvoice(){
+    if(invoicePrompt.value.trim()===""){
 
-const qty = Number(quantity.value);
-const pr = Number(price.value);
-const gstPercent = Number(gst.value);
+        alert("Please enter invoice details.");
 
-const subtotal = qty * pr;
-const gstAmount = subtotal * gstPercent / 100;
-const total = subtotal + gstAmount;
-
-invoicePreview.innerHTML = `
-<h2>${company.value}</h2>
-<hr><br>
-
-<b>Invoice No:</b> ${invoiceNo.value}<br>
-<b>Date:</b> ${invoiceDate.value}<br>
-<b>Client:</b> ${client.value}<br><br>
-
-<table style="width:100%;border-collapse:collapse;">
-
-<tr>
-<th align="left">Item</th>
-<th>Qty</th>
-<th>Price</th>
-<th>Total</th>
-</tr>
-
-<tr>
-<td>${item.value}</td>
-<td align="center">${qty}</td>
-<td align="center">₹${pr}</td>
-<td align="right">₹${subtotal}</td>
-</tr>
-
-</table>
-
-<br><hr>
-
-<p><b>Subtotal :</b> ₹${subtotal}</p>
-
-<p><b>GST (${gstPercent}%) :</b> ₹${gstAmount}</p>
-
-<h2>Total : ₹${total}</h2>
-
-<br>
-
-<p>Thank you for your business ❤️</p>
-`;
-
-}
-
-aiGenerate.addEventListener("click", generateAIInvoice);
-
-async function generateAIInvoice() {
-
-    if (invoicePrompt.value.trim() === "") {
-        alert("Please enter an AI prompt.");
         return;
+
     }
 
-    invoicePreview.innerHTML = "🤖 AI is generating invoice...";
+    invoiceOutput.innerHTML=`
 
-    try {
+    <div class="placeholder">
 
-        const response = await fetch("https://bizpilot-backend-graw.onrender.com/invoice-ai", {
+        <div class="placeholder-icon">🤖</div>
 
-            method: "POST",
+        <h3>Generating Invoice...</h3>
 
-            headers: {
-                "Content-Type": "application/json"
+        <p>Please wait a few seconds.</p>
+
+    </div>
+
+    `;
+
+    setLoading(true);
+
+    try{
+
+        const response = await fetch(API_URL,{
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
             },
 
-            body: JSON.stringify({
-                prompt: invoicePrompt.value
+            body:JSON.stringify({
+
+                prompt:invoicePrompt.value
+
             })
 
         });
 
         const data = await response.json();
 
-        if (data.success) {
+        if(data.success){
 
-            invoicePreview.innerHTML = data.reply;
-
-        } else {
-
-            invoicePreview.innerHTML = "❌ " + data.error;
+            invoiceOutput.innerHTML = data.reply;
 
         }
 
-    } catch (err) {
+        else{
 
-        console.error(err);
+            invoiceOutput.innerHTML=
 
-        invoicePreview.innerHTML = "❌ Unable to connect to AI Server.";
+            `<p>❌ ${data.error}</p>`;
+
+        }
+
+    }
+
+    catch(error){
+
+        invoiceOutput.innerHTML=
+
+        `<p>❌ Unable to connect to server.</p>`;
+
+        console.error(error);
+
+    }
+
+    finally{
+
+        setLoading(false);
 
     }
 
 }
 
-/* Copy */
+generateBtn.addEventListener("click",generateInvoice);
 
-copyBtn.addEventListener("click", ()=>{
+function setLoading(isLoading){
 
-navigator.clipboard.writeText(invoicePreview.innerText);
+    if(isLoading){
 
-copyBtn.innerHTML="✅ Copied";
+        generateBtn.disabled=true;
 
-setTimeout(()=>{
+        generateBtn.innerHTML="⏳ Generating...";
 
-copyBtn.innerHTML="📋 Copy";
+    }
 
-},2000);
+    else{
+
+        generateBtn.disabled=false;
+
+        generateBtn.innerHTML="🚀 Generate Invoice";
+
+    }
+
+}
+
+/* ===================================
+   ACTION BUTTONS
+=================================== */
+
+const copyBtn = document.getElementById("copyBtn");
+
+const downloadBtn = document.getElementById("downloadBtn");
+
+const printBtn = document.getElementById("printBtn");
+
+const editBtn = document.getElementById("editBtn");
+
+/* ===========================
+   TOAST
+=========================== */
+
+function showToast(text){
+
+    const toast=document.getElementById("toast");
+
+    toast.innerHTML=text;
+
+    toast.classList.add("show");
+
+    setTimeout(()=>{
+
+        toast.classList.remove("show");
+
+    },2000);
+
+}
+
+/* ===========================
+   COPY
+=========================== */
+
+copyBtn.addEventListener("click",()=>{
+
+    const text=invoiceOutput.innerText;
+
+    if(text.trim()==="") return;
+
+    navigator.clipboard.writeText(text);
+
+    showToast("✅ Invoice Copied");
 
 });
 
-/* Download */
+/* ===========================
+   DOWNLOAD
+=========================== */
 
 downloadBtn.addEventListener("click",()=>{
 
-const blob = new Blob(
-[invoicePreview.innerText],
-{type:"text/plain"}
-);
+    const html=invoiceOutput.innerHTML;
 
-const a = document.createElement("a");
+    if(html.trim()==="") return;
 
-a.href = URL.createObjectURL(blob);
+    const blob=new Blob([html],{
 
-a.download = "Invoice.txt";
+        type:"text/html"
 
-a.click();
+    });
+
+    const link=document.createElement("a");
+
+    link.href=URL.createObjectURL(blob);
+
+    link.download="BizPilot_Invoice.html";
+
+    link.click();
+
+    URL.revokeObjectURL(link.href);
+
+    showToast("⬇ Invoice Downloaded");
 
 });
+
+/* ===================================
+   PRINT
+=================================== */
+
+printBtn.addEventListener("click",()=>{
+
+    const html = invoiceOutput.innerHTML;
+
+    if(html.trim()==="") return;
+
+    const printWindow = window.open("","","width=900,height=700");
+
+    printWindow.document.write(`
+        <html>
+        <head>
+            <title>BizPilot Invoice</title>
+        </head>
+        <body style="margin:20px;font-family:Arial,sans-serif;background:white;">
+            ${html}
+        </body>
+        </html>
+    `);
+
+    printWindow.document.close();
+
+    printWindow.focus();
+
+    printWindow.print();
+
+});
+
+/* ===================================
+   EDIT
+=================================== */
+
+editBtn.addEventListener("click",()=>{
+
+    const text = invoiceOutput.innerText;
+
+    if(text.trim()==="") return;
+
+    invoicePrompt.value = text;
+
+    invoicePrompt.focus();
+
+    showToast("✏ Invoice loaded into editor");
+
+});
+
+/* ===================================
+   AUTO RESIZE TEXTAREA
+=================================== */
+
+invoicePrompt.addEventListener("input",()=>{
+
+    invoicePrompt.style.height="auto";
+
+    invoicePrompt.style.height=invoicePrompt.scrollHeight+"px";
+
+});
+
+/* ===================================
+   CTRL + ENTER
+=================================== */
+
+invoicePrompt.addEventListener("keydown",(e)=>{
+
+    if(e.key==="Enter" && e.ctrlKey){
+
+        e.preventDefault();
+
+        generateInvoice();
+
+    }
+
+});
+
+
+
+
