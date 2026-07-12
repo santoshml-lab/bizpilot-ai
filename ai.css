@@ -306,14 +306,16 @@ box-shadow:0 10px 25px rgba(37,99,235,.30);
 =========================== */
 
 .bubble{
-max-width:70%;
+max-width:85%;
+width:fit-content;
 padding:18px 22px;
 border-radius:20px;
-line-height:1.7;
+line-height:1.8;
 font-size:15px;
-box-shadow:var(--shadow);
-word-wrap:break-word;
+overflow-x:auto;
+word-break:break-word;
 }
+
 
 .ai-message .bubble{
 background:#182233;
@@ -602,6 +604,27 @@ border-radius:20px;
 background:transparent;
 
 }
+
+.bubble table{
+width:100%;
+border-collapse:collapse;
+display:block;
+overflow-x:auto;
+}
+
+.bubble th,
+.bubble td{
+border:1px solid rgba(255,255,255,.15);
+padding:10px;
+text-align:left;
+white-space:nowrap;
+}
+
+.bubble th{
+background:#2563EB;
+color:white;
+}
+
 
 
 
