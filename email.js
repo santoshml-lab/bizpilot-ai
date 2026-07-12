@@ -189,3 +189,21 @@ function setLoading(isLoading){
     }
 
 }
+
+const suggestionBtns =
+document.querySelectorAll(".suggestion-btn");
+
+suggestionBtns.forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+subject.value = btn.innerText;
+
+details.value =
+`Write a professional ${btn.innerText} email for my business.`;
+
+details.focus();
+
+});
+
+});
