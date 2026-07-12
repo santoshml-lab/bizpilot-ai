@@ -1,66 +1,62 @@
-/* ==========================================
+/* ===================================
    BIZPILOT AI
-   INVOICE CSS
-========================================== */
+   INVOICE AI
+=================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+:root{
+
+--bg:#070B14;
+--sidebar:#101826;
+--card:#182233;
+--primary:#2563EB;
+--accent:#00D4FF;
+--white:#FFFFFF;
+--text:#C9D1D9;
+--border:rgba(255,255,255,.08);
+--shadow:0 12px 35px rgba(0,0,0,.35);
+
+}
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Inter',sans-serif;
-}
-
-:root{
-
---bg:#070B14;
---sidebar:#111827;
---card:#1E293B;
---primary:#2563EB;
---secondary:#00D4FF;
---text:#ffffff;
---muted:#94A3B8;
-
 }
 
 body{
 
+font-family:'Inter',sans-serif;
 background:var(--bg);
 color:white;
 overflow:hidden;
 
 }
 
-/* Background */
-
 .glow{
 
 position:fixed;
-width:600px;
-height:600px;
-background:#2563EB22;
+width:400px;
+height:400px;
+background:#2563EB;
 filter:blur(180px);
-top:-200px;
-left:-150px;
-z-index:-1;
+opacity:.20;
+top:-120px;
+left:-120px;
 
 }
 
 .glow2{
 
 position:fixed;
-width:600px;
-height:600px;
-background:#00D4FF18;
+width:350px;
+height:350px;
+background:#00D4FF;
 filter:blur(180px);
-bottom:-200px;
-right:-150px;
-z-index:-1;
+opacity:.15;
+bottom:-120px;
+right:-120px;
 
 }
-
-/* Layout */
 
 .container{
 
@@ -69,14 +65,12 @@ height:100vh;
 
 }
 
-/* Sidebar */
-
 .sidebar{
 
-width:260px;
-background:#111827;
+width:280px;
+background:rgba(16,24,38,.92);
+border-right:1px solid var(--border);
 padding:25px;
-border-right:1px solid rgba(255,255,255,.08);
 display:flex;
 flex-direction:column;
 
@@ -92,57 +86,72 @@ margin-bottom:30px;
 
 .logo span{
 
-color:#2563EB;
+color:var(--accent);
 
 }
 
-.sidebar a{
+.new-chat{
+
+padding:15px;
+border:none;
+border-radius:15px;
+background:linear-gradient(90deg,#2563EB,#00D4FF);
+color:white;
+font-weight:700;
+cursor:pointer;
+margin-bottom:25px;
+
+}
+
+.menu{
+
+display:flex;
+flex-direction:column;
+gap:10px;
+
+}
+
+.menu a{
 
 text-decoration:none;
-color:#CBD5E1;
-padding:14px 18px;
-margin-bottom:10px;
-border-radius:14px;
+color:var(--text);
+padding:15px;
+border-radius:15px;
 transition:.3s;
 
 }
 
-.sidebar a:hover{
+.menu a:hover{
 
 background:#1E293B;
 color:white;
 
 }
 
-.sidebar .active{
+.menu .active{
 
-background:#2563EB;
+background:linear-gradient(90deg,#2563EB,#00D4FF);
 color:white;
 
 }
 
-/* Main */
-
 .main{
 
 flex:1;
-overflow-y:auto;
-padding-bottom:30px;
+display:flex;
+flex-direction:column;
 
 }
 
-/* Topbar */
-
 .topbar{
 
-height:75px;
+height:80px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:0 30px;
-background:rgba(17,24,39,.70);
-backdrop-filter:blur(20px);
-border-bottom:1px solid rgba(255,255,255,.08);
+padding:0 35px;
+background:rgba(24,34,51,.90);
+border-bottom:1px solid var(--border);
 
 }
 
@@ -150,94 +159,147 @@ border-bottom:1px solid rgba(255,255,255,.08);
 
 background:#1E293B;
 padding:10px 18px;
-border-radius:30px;
-font-weight:600;
+border-radius:50px;
 
 }
 
-/* Cards */
+/* ===========================
+   INVOICE CONTAINER
+=========================== */
 
-.invoice-card,
-.preview-card{
+.invoice-container{
 
-background:#1E293B;
-margin:30px;
+flex:1;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
 padding:30px;
-border-radius:22px;
-box-shadow:0 15px 40px rgba(0,0,0,.30);
+overflow:auto;
 
 }
 
-.invoice-card h1{
+/* ===========================
+   LEFT CARD
+=========================== */
 
+.invoice-form{
+
+background:rgba(24,34,51,.92);
+border:1px solid var(--border);
+border-radius:22px;
+padding:30px;
+box-shadow:var(--shadow);
+
+}
+
+.invoice-form h1{
+
+font-size:30px;
 margin-bottom:10px;
 
 }
 
-.invoice-card p{
+.invoice-form p{
 
-color:#94A3B8;
+color:var(--text);
 margin-bottom:25px;
 
 }
 
-/* Form */
-
-.invoice-card label{
+.invoice-form label{
 
 display:block;
-margin-top:18px;
-margin-bottom:8px;
+margin-bottom:12px;
 font-weight:600;
 
 }
 
-.invoice-card input{
+/* ===========================
+   TEXTAREA
+=========================== */
+
+.invoice-form textarea{
 
 width:100%;
-padding:15px;
-background:#111827;
-border:1px solid rgba(255,255,255,.08);
-border-radius:14px;
-color:white;
-font-size:15px;
+min-height:320px;
+resize:vertical;
+border:none;
 outline:none;
+padding:18px;
+font-size:15px;
+font-family:'Inter',sans-serif;
+color:white;
+background:#111827;
+border-radius:18px;
+line-height:1.7;
+transition:.30s;
+box-shadow:0 8px 20px rgba(0,0,0,.25);
 
 }
 
-.invoice-card input:focus{
+.invoice-form textarea::placeholder{
 
-border-color:#2563EB;
-box-shadow:0 0 12px rgba(37,99,235,.35);
+color:#94A3B8;
 
 }
 
-/* Generate Button */
+.invoice-form textarea:focus{
+
+box-shadow:
+0 0 0 2px #2563EB,
+0 0 25px rgba(37,99,235,.35);
+
+}
+
+/* ===========================
+   GENERATE BUTTON
+=========================== */
 
 #generateBtn{
 
 width:100%;
 margin-top:25px;
-padding:16px;
+padding:18px;
 border:none;
-border-radius:16px;
+border-radius:18px;
 background:linear-gradient(135deg,#2563EB,#00D4FF);
 color:white;
 font-size:17px;
 font-weight:700;
 cursor:pointer;
-transition:.3s;
+transition:.30s;
+box-shadow:0 10px 25px rgba(37,99,235,.35);
 
 }
 
 #generateBtn:hover{
 
-transform:translateY(-2px);
-box-shadow:0 12px 30px rgba(37,99,235,.40);
+transform:translateY(-3px);
+box-shadow:0 15px 35px rgba(0,212,255,.45);
 
 }
 
-/* Preview */
+#generateBtn:active{
+
+transform:scale(.97);
+
+}
+
+/* ===========================
+   PREVIEW CARD
+=========================== */
+
+.preview-card{
+
+background:rgba(24,34,51,.92);
+border:1px solid var(--border);
+border-radius:22px;
+padding:30px;
+display:flex;
+flex-direction:column;
+box-shadow:var(--shadow);
+
+}
 
 .preview-card h2{
 
@@ -245,19 +307,52 @@ margin-bottom:20px;
 
 }
 
-#invoicePreview{
+/* ===========================
+   OUTPUT
+=========================== */
 
-min-height:350px;
+#invoiceOutput{
+
+flex:1;
 background:#111827;
-padding:22px;
-border-radius:16px;
-border:1px solid rgba(255,255,255,.08);
+border-radius:18px;
+padding:20px;
+overflow:auto;
 line-height:1.8;
-white-space:pre-wrap;
+color:white;
 
 }
 
-/* Buttons */
+/* Placeholder */
+
+.placeholder{
+
+height:100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:#94A3B8;
+
+}
+
+.placeholder-icon{
+
+font-size:60px;
+margin-bottom:20px;
+
+}
+
+.placeholder h3{
+
+margin-bottom:12px;
+
+}
+
+/* ===========================
+   ACTION BUTTONS
+=========================== */
 
 .actions{
 
@@ -270,48 +365,179 @@ margin-top:20px;
 .actions button{
 
 flex:1;
-padding:15px;
+padding:14px;
 border:none;
 border-radius:14px;
-background:#2563EB;
-color:white;
-font-size:15px;
-font-weight:600;
 cursor:pointer;
-transition:.3s;
+font-weight:600;
+font-size:15px;
+transition:.30s;
+color:white;
+
+}
+
+/* Copy */
+
+#copyBtn{
+
+background:#2563EB;
+
+}
+
+/* Download */
+
+#downloadBtn{
+
+background:#16A34A;
+
+}
+
+/* Print */
+
+#printBtn{
+
+background:#8B5CF6;
+
+}
+
+/* Edit */
+
+#editBtn{
+
+background:#F59E0B;
 
 }
 
 .actions button:hover{
 
-background:#1D4ED8;
+transform:translateY(-3px);
+box-shadow:0 10px 25px rgba(0,0,0,.35);
 
 }
 
-/* Scroll */
+/* ===========================
+   OUTPUT STYLING
+=========================== */
 
-.main::-webkit-scrollbar{
+#invoiceOutput h1,
+#invoiceOutput h2,
+#invoiceOutput h3{
+
+margin-bottom:15px;
+
+}
+
+#invoiceOutput p{
+
+margin-bottom:12px;
+
+}
+
+#invoiceOutput table{
+
+width:100%;
+border-collapse:collapse;
+margin:20px 0;
+display:block;
+overflow-x:auto;
+
+}
+
+#invoiceOutput th,
+#invoiceOutput td{
+
+border:1px solid rgba(255,255,255,.15);
+padding:12px;
+text-align:left;
+white-space:nowrap;
+
+}
+
+#invoiceOutput th{
+
+background:#2563EB;
+color:white;
+
+}
+
+/* Scrollbar */
+
+#invoiceOutput::-webkit-scrollbar{
 
 width:8px;
 
 }
 
-.main::-webkit-scrollbar-thumb{
+#invoiceOutput::-webkit-scrollbar-thumb{
 
 background:#2563EB;
 border-radius:20px;
 
 }
 
-.main::-webkit-scrollbar-track{
+#invoiceOutput::-webkit-scrollbar-track{
 
-background:#111827;
+background:transparent;
 
 }
 
-/* Mobile */
+/* ===========================
+   TOAST
+=========================== */
+
+.toast{
+
+position:fixed;
+top:90px;
+right:25px;
+padding:14px 22px;
+background:linear-gradient(135deg,#22C55E,#16A34A);
+color:white;
+font-weight:600;
+border-radius:12px;
+opacity:0;
+transform:translateY(-20px);
+transition:.35s;
+box-shadow:0 12px 30px rgba(0,0,0,.35);
+pointer-events:none;
+z-index:9999;
+
+}
+
+.toast.show{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+.bottom-text{
+
+text-align:center;
+padding:12px;
+font-size:13px;
+color:#94A3B8;
+background:rgba(24,34,51,.90);
+border-top:1px solid var(--border);
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
 
 @media(max-width:900px){
+
+.invoice-container{
+
+grid-template-columns:1fr;
+padding:20px;
+
+}
 
 .sidebar{
 
@@ -319,24 +545,60 @@ display:none;
 
 }
 
-.invoice-card,
+.topbar{
+
+padding:0 20px;
+
+}
+
+.invoice-form,
 .preview-card{
 
-margin:15px;
 padding:20px;
 
 }
 
-.topbar{
+.actions{
 
-padding:15px;
-
-}
-
-.user{
-
-display:none;
+flex-direction:column;
 
 }
 
+.invoice-form textarea{
+
+min-height:220px;
+
 }
+
+}
+
+/* ===========================
+   FADE ANIMATION
+=========================== */
+
+.preview-card,
+.invoice-form{
+
+animation:fadeUp .35s ease;
+
+}
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+
