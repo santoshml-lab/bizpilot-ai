@@ -104,6 +104,10 @@ div.innerHTML=`
 
 <div class="bubble">
 
+<h4 class="ai-title">
+🤖 BizPilot AI
+</h4>
+
 <div class="typing">
 
 <span></span>
@@ -113,6 +117,10 @@ div.innerHTML=`
 <span></span>
 
 </div>
+
+<p style="margin-top:10px;color:#94A3B8;">
+Thinking...
+</p>
 
 </div>
 
