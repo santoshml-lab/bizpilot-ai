@@ -75,18 +75,25 @@ async function generateEmail(){
 
     catch(error){
 
-        emailOutput.innerHTML =
-        `<p>❌ Unable to connect to server.</p>`;
+    emailOutput.innerHTML =
+    `<p>❌ Unable to connect to server.</p>`;
 
-        console.error(error);
-
-    }
+    console.error(error);
 
 }
 
 finally{
+
     setLoading(false);
+
 }
+
+}
+
+      
+        
+
+        
 
 generateBtn.addEventListener("click",generateEmail);
 
