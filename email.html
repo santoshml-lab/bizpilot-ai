@@ -4,6 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Email Writer | BizPilot AI</title>
@@ -21,132 +22,258 @@
 
 <div class="container">
 
-<!-- Sidebar -->
+    <!-- ===========================
+         SIDEBAR
+    ============================ -->
 
-<div class="sidebar">
+    <div class="sidebar">
 
-<div class="logo">
-💼 Biz<span>Pilot</span>
+        <div class="logo">
+
+            💼 Biz<span>Pilot</span>
+
+        </div>
+
+        <button class="new-chat">
+
+            ✨ New Email
+
+        </button>
+
+        <div class="menu">
+
+            <a href="dashboard.html">
+                🏠 Dashboard
+            </a>
+
+            <a href="ai.html">
+                🤖 AI Assistant
+            </a>
+
+            <a class="active">
+                📧 Email Writer
+            </a>
+
+            <a href="document.html">
+                📄 Document AI
+            </a>
+
+            <a href="invoice.html">
+                💰 Invoice Generator
+            </a>
+
+            <a href="planner.html">
+                📅 Smart Planner
+            </a>
+
+            <a href="analytics.html">
+                📊 Analytics
+            </a>
+
+            <a href="#">
+                ⚙ Settings
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ===========================
+          MAIN
+    ============================ -->
+
+    <div class="main">
+
+        <div class="topbar">
+
+            <h2>
+
+                📧 AI Email Writer
+
+            </h2>
+
+            <div class="user">
+
+                👤 Santosh
+
+            </div>
+
+        </div>
+
+      <!-- ===========================
+      EMAIL FORM
+=========================== -->
+
+<div class="email-container">
+
+    <!-- LEFT SIDE -->
+
+    <div class="email-form">
+
+        <h1>Create Professional Email</h1>
+
+        <p>
+            Generate beautiful business emails using AI.
+        </p>
+
+        <label>Email Type</label>
+
+        <select id="emailType">
+
+            <option>Professional</option>
+
+            <option>Business Proposal</option>
+
+            <option>Sales Email</option>
+
+            <option>Marketing</option>
+
+            <option>Customer Support</option>
+
+            <option>Follow Up</option>
+
+            <option>Job Application</option>
+
+        </select>
+
+        <label>Tone</label>
+
+        <select id="tone">
+
+            <option>Professional</option>
+
+            <option>Friendly</option>
+
+            <option>Formal</option>
+
+            <option>Persuasive</option>
+
+            <option>Confident</option>
+
+            <option>Polite</option>
+
+        </select>
+
+        <label>Recipient</label>
+
+        <input
+        type="text"
+        id="recipient"
+        placeholder="Client / Manager / Customer">
+
+        <label>Subject</label>
+
+        <input
+        type="text"
+        id="subject"
+        placeholder="Enter email subject">
+
+        <label>Email Details</label>
+
+        <textarea
+
+        id="details"
+
+        rows="9"
+
+        placeholder="Describe what you want the AI to write..."></textarea>
+
+        <button id="generateBtn">
+
+            🚀 Generate Email
+
+        </button>
+
+    </div>
+
+      <!-- ===========================
+          RIGHT SIDE PREVIEW
+    ============================ -->
+
+    <div class="preview-card">
+
+        <h2>📄 Generated Email</h2>
+
+        <div id="emailOutput">
+
+            <div class="placeholder">
+
+                <div class="placeholder-icon">
+
+                    📧
+
+                </div>
+
+                <h3>No Email Generated</h3>
+
+                <p>
+
+                    Click <b>Generate Email</b> to create a professional AI email.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="actions">
+
+            <button id="copyBtn">
+
+                📋 Copy
+
+            </button>
+
+            <button id="downloadBtn">
+
+                ⬇ Download
+
+            </button>
+
+            <button id="editBtn">
+
+                ✏ Edit
+
+            </button>
+
+        </div>
+
+    </div>
+
 </div>
 
-<a href="dashboard.html">🏠 Dashboard</a>
-<a href="ai.html">🤖 AI Chat</a>
-<a class="active">📧 Email Writer</a>
-<a href="#">📄 Document AI</a>
-<a href="#">💰 Invoice Generator</a>
-<a href="#">📅 Planner</a>
+<!-- ===========================
+      FOOTER
+=========================== -->
+
+<div class="bottom-text">
+
+✨ BizPilot AI can make mistakes. Always verify important information before sending.
 
 </div>
 
-<!-- Main -->
+    </div>
 
-<div class="main">
+  <!-- ===========================
+      TOAST NOTIFICATION
+=========================== -->
 
-<div class="topbar">
+<div id="toast" class="toast">
 
-<h2>📧 AI Email Writer</h2>
-
-<div class="user">
-👤 Santosh
-</div>
-
-</div>
-
-<div class="email-card">
-
-<h1>Create Professional Emails with AI</h1>
-
-<p>
-Fill the details below and BizPilot AI will generate a professional email instantly.
-</p>
-
-<label>Subject</label>
-
-<input
-type="text"
-id="subject"
-placeholder="Enter email subject">
-
-<label>Email Type</label>
-
-<select id="type">
-
-<option>Professional</option>
-
-<option>Marketing</option>
-
-<option>Follow Up</option>
-
-<option>Complaint</option>
-
-<option>Leave Application</option>
-
-<option>Proposal</option>
-
-<option>Business</option>
-
-</select>
-
-<label>Tone</label>
-
-<select id="tone">
-
-<option>Professional</option>
-
-<option>Formal</option>
-
-<option>Friendly</option>
-
-<option>Polite</option>
-
-<option>Confident</option>
-
-</select>
-
-<label>Describe what you want</label>
-
-<textarea
-id="details"
-rows="8"
-placeholder="Example:
-Write a professional leave email for 2 days because of fever."></textarea>
-
-<button id="generateBtn">
-✨ Generate Email
-</button>
-
-</div>
-
-<div class="result-card">
-
-<h2>Generated Email</h2>
-
-<div id="output">
-
-Your generated email will appear here...
-
-</div>
-
-<div class="actions">
-
-<button id="copyBtn">
-📋 Copy
-</button>
-
-<button id="downloadBtn">
-⬇ Download
-</button>
+    ✅ Copied Successfully
 
 </div>
 
 </div>
 
-</div>
+<!-- Marked.js -->
 
-</div>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<!-- Email JS -->
 
 <script src="email.js"></script>
 
 </body>
 
-  </html>
+</html>
