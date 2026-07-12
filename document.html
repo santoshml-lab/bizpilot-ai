@@ -4,6 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Document AI | BizPilot AI</title>
@@ -26,20 +27,36 @@
 <div class="sidebar">
 
 <div class="logo">
+
 💼 Biz<span>Pilot</span>
+
 </div>
+
+<button class="new-chat">
+
+📄 New Document
+
+</button>
+
+<div class="menu">
 
 <a href="dashboard.html">🏠 Dashboard</a>
 
-<a href="ai.html">🤖 AI Chat</a>
+<a href="ai.html">🤖 AI Assistant</a>
 
 <a href="email.html">📧 Email Writer</a>
 
 <a class="active">📄 Document AI</a>
 
-<a href="#">💰 Invoice Generator</a>
+<a href="invoice.html">💰 Invoice Generator</a>
 
-<a href="#">📅 Planner</a>
+<a href="planner.html">📅 Smart Planner</a>
+
+<a href="analytics.html">📊 Analytics</a>
+
+<a href="#">⚙ Settings</a>
+
+</div>
 
 </div>
 
@@ -49,95 +66,174 @@
 
 <div class="topbar">
 
-<h2>📄 AI Document Analyzer</h2>
+<h2>
+
+📄 AI Document Assistant
+
+</h2>
 
 <div class="user">
+
 👤 Santosh
-</div>
-
-</div>
-
-<!-- Upload Card -->
-
-<div class="upload-card">
-
-<h1>Upload Your Document</h1>
-
-<p>
-Upload a PDF or DOCX file and let AI analyze it in seconds.
-</p>
-
-<input
-type="file"
-id="documentFile"
-accept=".pdf,.doc,.docx">
-
-<button id="analyzeBtn">
-
-🚀 Analyze Document
-
-</button>
-
-</div>
-
-<!-- Result -->
-
-<div class="result-card">
-
-<h2>📄 AI Analysis</h2>
-
-<div id="result">
-
-Upload a document to get:
-
-<br><br>
-
-✅ Executive Summary
-
-<br>
-
-✅ Key Points
-
-<br>
-
-✅ Important Dates
-
-<br>
-
-✅ Action Items
-
-<br>
-
-✅ Final Conclusion
-
-</div>
-
-<div class="actions">
-
-<button id="copyBtn">
-
-📋 Copy
-
-</button>
-
-<button id="downloadBtn">
-
-⬇ Download
-
-</button>
 
 </div>
 
 </div>
 
+ <!-- ===========================
+      DOCUMENT CONTAINER
+=========================== -->
+
+<div class="document-container">
+
+    <!-- LEFT SIDE -->
+
+    <div class="document-form">
+
+        <h1>Analyze Your Documents</h1>
+
+        <p>
+
+            Upload a PDF or DOCX file and let AI analyze it.
+
+        </p>
+
+        <!-- Upload Box -->
+
+        <div class="upload-box">
+
+            <div class="upload-icon">
+
+                📂
+
+            </div>
+
+            <h3>Drag & Drop File</h3>
+
+            <p>or click below to upload</p>
+
+            <input
+            type="file"
+            id="documentFile"
+            accept=".pdf,.doc,.docx">
+
+        </div>
+
+        <!-- AI Task -->
+
+        <label>Choose AI Task</label>
+
+        <select id="task">
+
+            <option>Summarize Document</option>
+
+            <option>Explain Document</option>
+
+            <option>Extract Key Points</option>
+
+            <option>Translate Document</option>
+
+            <option>Create Notes</option>
+
+            <option>Generate Questions</option>
+
+        </select>
+
+        <button id="analyzeBtn">
+
+            🚀 Analyze Document
+
+        </button>
+
+    </div>
+
+       <!-- ===========================
+          RIGHT SIDE RESULT
+    ============================ -->
+
+    <div class="preview-card">
+
+        <h2>📄 AI Analysis Result</h2>
+
+        <div id="documentOutput">
+
+            <div class="placeholder">
+
+                <div class="placeholder-icon">
+
+                    🤖
+
+                </div>
+
+                <h3>No Analysis Yet</h3>
+
+                <p>
+
+                    Upload a document and click
+                    <b>Analyze Document</b>.
+
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="actions">
+
+            <button id="copyBtn">
+
+                📋 Copy
+
+            </button>
+
+            <button id="downloadBtn">
+
+                ⬇ Download
+
+            </button>
+
+            <button id="editBtn">
+
+                ✏ Edit
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ===========================
+      FOOTER
+=========================== -->
+
+<div class="bottom-text">
+
+✨ BizPilot AI can make mistakes. Please verify important information before using AI results.
+
 </div>
 
 </div>
+
+<!-- Toast -->
+
+<div id="toast" class="toast">
+
+    ✅ Success
+
+</div>
+
+<!-- Marked.js -->
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<!-- Document JS -->
 
 <script src="document.js"></script>
 
 </body>
 
 </html>
+  
+  
