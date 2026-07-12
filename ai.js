@@ -77,6 +77,8 @@ div.querySelector(".copy-btn").onclick = () => {
 
 navigator.clipboard.writeText(message);
 
+showToast("✅ Copied to Clipboard");
+
 };
 
 }
@@ -216,3 +218,22 @@ sendMessage();
 }
 
 });
+
+function showToast(text){
+
+const toast = document.getElementById("toast");
+
+toast.innerHTML = text;
+
+toast.classList.add("show");
+
+setTimeout(()=>{
+
+toast.classList.remove("show");
+
+},2000);
+
+}
+
+
+
