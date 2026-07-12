@@ -30,6 +30,7 @@ async function generateEmail(){
             <p>Please wait a few seconds.</p>
         </div>
     `;
+   setLoading(true);
 
     try{
 
@@ -81,6 +82,10 @@ async function generateEmail(){
 
     }
 
+}
+
+finally{
+    setLoading(false);
 }
 
 generateBtn.addEventListener("click",generateEmail);
@@ -164,3 +169,16 @@ details.focus();
 showToast("✏ Email loaded into editor");
 
 });
+
+
+function setLoading(isLoading){
+
+    if(isLoading){
+        generateBtn.disabled = true;
+        generateBtn.innerHTML = "⏳ Generating...";
+    }else{
+        generateBtn.disabled = false;
+        generateBtn.innerHTML = "🚀 Generate Email";
+    }
+
+}
