@@ -3,36 +3,37 @@
    EMAIL WRITER
 =================================== */
 
-const subject = document.getElementById("subject");
-const type = document.getElementById("type");
-const tone = document.getElementById("tone");
-const details = document.getElementById("details");
-
-const output = document.getElementById("output");
+const API_URL = "https://bizpilot-backend-graw.onrender.com/email";
 
 const generateBtn = document.getElementById("generateBtn");
-const copyBtn = document.getElementById("copyBtn");
-const downloadBtn = document.getElementById("downloadBtn");
+const emailOutput = document.getElementById("emailOutput");
 
-/* Generate Email */
-
-generateBtn.addEventListener("click", generateEmail);
+const emailType = document.getElementById("emailType");
+const tone = document.getElementById("tone");
+const subject = document.getElementById("subject");
+const details = document.getElementById("details");
 
 async function generateEmail(){
 
-    if(details.value.trim()==""){
+    if(subject.value.trim()==="" || details.value.trim()===""){
 
-        alert("Please enter email details.");
+        alert("Please fill Subject and Details.");
 
         return;
 
     }
 
-    output.innerHTML="⏳ Generating Professional Email...";
+    emailOutput.innerHTML = `
+        <div class="placeholder">
+            <div class="placeholder-icon">🤖</div>
+            <h3>Generating Email...</h3>
+            <p>Please wait a few seconds.</p>
+        </div>
+    `;
 
     try{
 
-        const response = await fetch("https://bizpilot-backend-graw.onrender.com/email",{
+        const response = await fetch(API_URL,{
 
             method:"POST",
 
@@ -44,7 +45,7 @@ async function generateEmail(){
 
                 subject:subject.value,
 
-                type:type.value,
+                type:emailType.value,
 
                 tone:tone.value,
 
@@ -54,27 +55,59 @@ async function generateEmail(){
 
         });
 
-        const data=await response.json();
+        const data = await response.json();
 
         if(data.success){
 
-            output.innerHTML=data.email;
+            emailOutput.innerHTML = marked.parse(data.email);
 
-        }else{
+        }
 
-            output.innerHTML="❌ "+data.error;
+        else{
+
+            emailOutput.innerHTML =
+            `<p>❌ ${data.error}</p>`;
 
         }
 
     }
 
-    catch(err){
+    catch(error){
 
-        output.innerHTML="❌ Unable to connect to AI Server.";
+        emailOutput.innerHTML =
+        `<p>❌ Unable to connect to server.</p>`;
 
-        console.log(err);
+        console.error(error);
 
     }
+
+}
+
+generateBtn.addEventListener("click",generateEmail);
+
+/* ===================================
+   ACTION BUTTONS
+=================================== */
+
+const copyBtn = document.getElementById("copyBtn");
+const downloadBtn = document.getElementById("downloadBtn");
+const editBtn = document.getElementById("editBtn");
+
+/* Toast */
+
+function showToast(text){
+
+const toast = document.getElementById("toast");
+
+toast.innerHTML = text;
+
+toast.classList.add("show");
+
+setTimeout(()=>{
+
+toast.classList.remove("show");
+
+},2000);
 
 }
 
@@ -82,15 +115,13 @@ async function generateEmail(){
 
 copyBtn.addEventListener("click",()=>{
 
-    navigator.clipboard.writeText(output.innerText);
+const text = emailOutput.innerText;
 
-    copyBtn.innerHTML="✅ Copied";
+if(text.trim()==="") return;
 
-    setTimeout(()=>{
+navigator.clipboard.writeText(text);
 
-        copyBtn.innerHTML="📋 Copy";
-
-    },2000);
+showToast("✅ Email Copied");
 
 });
 
@@ -98,14 +129,38 @@ copyBtn.addEventListener("click",()=>{
 
 downloadBtn.addEventListener("click",()=>{
 
-    const blob=new Blob([output.innerText],{type:"text/plain"});
+const text = emailOutput.innerText;
 
-    const a=document.createElement("a");
+if(text.trim()==="") return;
 
-    a.href=URL.createObjectURL(blob);
+const blob = new Blob([text],{
+type:"text/plain"
+});
 
-    a.download="BizPilot_Email.txt";
+const link=document.createElement("a");
 
-    a.click();
+link.href=URL.createObjectURL(blob);
+
+link.download="BizPilot_Email.txt";
+
+link.click();
+
+URL.revokeObjectURL(link.href);
+
+showToast("⬇ Email Downloaded");
+
+});
+
+/* Edit */
+
+editBtn.addEventListener("click",()=>{
+
+const text=emailOutput.innerText;
+
+details.value=text;
+
+details.focus();
+
+showToast("✏ Email loaded into editor");
 
 });
