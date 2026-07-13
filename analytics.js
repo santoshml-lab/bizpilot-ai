@@ -1,103 +1,166 @@
+/* ===================================
+   BIZPILOT AI
+   ANALYTICS
+=================================== */
+
+const API_URL = "https://bizpilot-backend-graw.onrender.com/analytics";
+
 const requests = document.getElementById("requests");
 const emails = document.getElementById("emails");
 const documents = document.getElementById("documents");
 const invoices = document.getElementById("invoices");
 const plans = document.getElementById("plans");
 const productivity = document.getElementById("productivity");
-const activity = document.getElementById("activity");
-const tool = document.getElementById("tool");
 
-// Backend URL
-const API = "https://bizpilot-backend-graw.onrender.com/analytics";
-
-loadAnalytics();
+const activityList = document.getElementById("activityList");
+const toolName = document.getElementById("toolName");
 
 async function loadAnalytics(){
 
     try{
 
-        const res = await fetch(API,{
+        const response = await fetch(API_URL,{
+
             method:"POST",
+
             headers:{
                 "Content-Type":"application/json"
             },
+
             body:JSON.stringify({})
+
         });
 
-        const data = await res.json();
+        const data = await response.json();
 
         if(data.success){
 
-            animate(requests,data.requests);
-            animate(emails,data.emails);
-            animate(documents,data.documents);
-            animate(invoices,data.invoices);
-            animate(plans,data.plans);
+            animateCounter(requests,data.requests);
 
-            productivity.innerHTML=data.productivity+"%";
+            animateCounter(emails,data.emails);
 
-            tool.innerHTML=data.tool;
+            animateCounter(documents,data.documents);
 
-            activity.innerHTML="";
+            animateCounter(invoices,data.invoices);
+
+            animateCounter(plans,data.plans);
+
+            animateCounter(productivity,data.productivity,"%");
+
+            toolName.innerHTML=data.tool;
+
+            activityList.innerHTML="";
 
             data.activity.forEach(item=>{
 
-                activity.innerHTML+=`
-                <p>✅ ${item}</p>
+                activityList.innerHTML+=`
+
+                <div class="activity-item">
+
+                    ✅ ${item}
+
+                </div>
+
                 `;
 
             });
 
+            showToast("✅ Analytics Updated");
+
         }
 
     }
 
-    catch(e){
+    catch(error){
 
-        console.log(e);
+        activityList.innerHTML=`
 
-        // Demo Data
-        animate(requests,245);
-        animate(emails,61);
-        animate(documents,18);
-        animate(invoices,29);
-        animate(plans,41);
+        <div class="activity-item">
 
-        productivity.innerHTML="96%";
+            ❌ Unable to load analytics.
 
-        tool.innerHTML="🤖 AI Chat";
+        </div>
 
-        activity.innerHTML=`
-        <p>✅ Invoice Generated</p>
-        <p>✅ Document Analyzed</p>
-        <p>✅ Smart Plan Created</p>
-        <p>✅ Email Generated</p>
-        <p>✅ AI Chat Completed</p>
         `;
+
+        console.error(error);
+
     }
 
 }
 
-function animate(element,target){
+loadAnalytics();
 
-    let count=0;
+/* ===================================
+   ANIMATED COUNTER
+=================================== */
 
-    const speed=20;
+function animateCounter(element,target,suffix=""){
+
+    let start=0;
+
+    const duration=1200;
+
+    const increment=target/(duration/16);
 
     const timer=setInterval(()=>{
 
-        count++;
+        start+=increment;
 
-        element.innerHTML=count;
+        if(start>=target){
 
-        if(count>=target){
+            start=target;
 
             clearInterval(timer);
 
-            element.innerHTML=target;
-
         }
 
-    },speed);
+        element.innerHTML=Math.floor(start)+suffix;
+
+    },16);
 
 }
+
+/* ===================================
+   TOAST
+=================================== */
+
+function showToast(text){
+
+    const toast=document.getElementById("toast");
+
+    toast.innerHTML=text;
+
+    toast.classList.add("show");
+
+    setTimeout(()=>{
+
+        toast.classList.remove("show");
+
+    },2000);
+
+}
+
+/* ===================================
+   REFRESH BUTTON
+=================================== */
+
+const refreshBtn=document.querySelector(".new-chat");
+
+refreshBtn.addEventListener("click",()=>{
+
+    showToast("🔄 Refreshing Analytics...");
+
+    loadAnalytics();
+
+});
+
+/* ===================================
+   AUTO REFRESH
+=================================== */
+
+setInterval(()=>{
+
+    loadAnalytics();
+
+},30000);
