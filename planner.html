@@ -4,6 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Smart Planner | BizPilot AI</title>
@@ -26,15 +27,36 @@
 <div class="sidebar">
 
 <div class="logo">
-💼 Biz<span>Pilot</span>
+
+📅 Biz<span>Pilot</span>
+
 </div>
 
+<button class="new-chat">
+
+✨ New Plan
+
+</button>
+
+<div class="menu">
+
 <a href="dashboard.html">🏠 Dashboard</a>
-<a href="ai.html">🤖 AI Chat</a>
+
+<a href="ai.html">🤖 AI Assistant</a>
+
 <a href="email.html">📧 Email Writer</a>
+
 <a href="document.html">📄 Document AI</a>
-<a href="invoice.html">💰 Invoice Generator</a>
+
+<a href="invoice.html">💰 Invoice AI</a>
+
 <a class="active">📅 Smart Planner</a>
+
+<a href="analytics.html">📊 Analytics</a>
+
+<a href="#">⚙ Settings</a>
+
+</div>
 
 </div>
 
@@ -47,72 +69,149 @@
 <h2>📅 AI Smart Planner</h2>
 
 <div class="user">
+
 👤 Santosh
-</div>
-
-</div>
-
-<!-- Planner Card -->
-
-<div class="planner-card">
-
-<h1>Create Your AI Plan</h1>
-
-<p>
-Describe your goal and BizPilot AI will generate a complete action plan.
-</p>
-
-<textarea
-id="plannerPrompt"
-placeholder="Example:
-Launch my clothing brand in 30 days..."
-rows="7">
-</textarea>
-
-<button id="plannerBtn">
-
-🚀 Generate AI Plan
-
-</button>
-
-</div>
-
-<!-- Result -->
-
-<div class="result-card">
-
-<h2>📋 AI Planner</h2>
-
-<div id="plannerResult">
-
-Your AI plan will appear here...
-
-</div>
-
-<div class="actions">
-
-<button id="copyPlan">
-
-📋 Copy
-
-</button>
-
-<button id="downloadPlan">
-
-⬇ Download
-
-</button>
 
 </div>
 
 </div>
 
+<!-- ===========================
+      PLANNER CONTAINER
+=========================== -->
+
+<div class="planner-container">
+
+    <!-- LEFT PANEL -->
+
+    <div class="planner-form">
+
+        <h1>Create Smart Plan</h1>
+
+        <p>
+
+            Describe your goal and BizPilot AI will generate a complete action plan.
+
+        </p>
+
+        <label>Your Goal</label>
+
+        <textarea
+        id="plannerPrompt"
+        rows="12"
+        placeholder="Example:
+
+Launch my SaaS product.
+
+Increase customers.
+
+Marketing strategy.
+
+Business growth plan.
+
+Weekly work schedule.
+
+Startup roadmap.">
+
+        </textarea>
+
+        <button id="generateBtn">
+
+            🚀 Generate Plan
+
+        </button>
+
+    </div>
+
+    <!-- RIGHT PANEL -->
+
+    <div class="preview-card">
+
+        <h2>
+
+            📅 AI Plan
+
+        </h2>
+
+        <div id="plannerOutput">
+
+            <div class="placeholder">
+
+                <div class="placeholder-icon">
+
+                    📅
+
+                </div>
+
+                <h3>No Plan Generated</h3>
+
+                <p>
+
+                    Enter your goal and click
+                    <b>Generate Plan</b>.
+
+                </p>
+
+            </div>
+
+        </div>
+
+              <!-- ACTION BUTTONS -->
+
+        <div class="actions">
+
+            <button id="copyBtn">
+
+                📋 Copy
+
+            </button>
+
+            <button id="downloadBtn">
+
+                ⬇ Download
+
+            </button>
+
+            <button id="editBtn">
+
+                ✏ Edit
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="bottom-text">
+
+✨ BizPilot AI can make mistakes. Please verify important information before using AI-generated plans.
+
 </div>
 
 </div>
+
+<!-- TOAST -->
+
+<div id="toast" class="toast">
+
+    ✅ Success
+
+</div>
+
+<!-- MARKDOWN -->
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<!-- JS -->
 
 <script src="planner.js"></script>
 
 </body>
 
 </html>
+
+      
