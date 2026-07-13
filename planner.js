@@ -1,16 +1,17 @@
+/* ===================================
+   BIZPILOT AI
+   SMART PLANNER
+=================================== */
+
+const API_URL = "https://bizpilot-backend-graw.onrender.com/planner";
+
+const generateBtn = document.getElementById("generateBtn");
 const plannerPrompt = document.getElementById("plannerPrompt");
-const plannerBtn = document.getElementById("plannerBtn");
-const plannerResult = document.getElementById("plannerResult");
+const plannerOutput = document.getElementById("plannerOutput");
 
-const copyPlan = document.getElementById("copyPlan");
-const downloadPlan = document.getElementById("downloadPlan");
+async function generatePlan(){
 
-// Generate AI Plan
-plannerBtn.addEventListener("click", generatePlan);
-
-async function generatePlan() {
-
-    if (plannerPrompt.value.trim() === "") {
+    if(plannerPrompt.value.trim()===""){
 
         alert("Please enter your goal.");
 
@@ -18,72 +19,212 @@ async function generatePlan() {
 
     }
 
-    plannerResult.innerHTML = "🤖 Generating your AI plan...";
+    plannerOutput.innerHTML=`
 
-    try {
+    <div class="placeholder">
 
-        const response = await fetch("https://bizpilot-backend-graw.onrender.com/planner", {
+        <div class="placeholder-icon">🤖</div>
 
-            method: "POST",
+        <h3>Generating Smart Plan...</h3>
 
-            headers: {
-                "Content-Type": "application/json"
+        <p>Please wait a few seconds.</p>
+
+    </div>
+
+    `;
+
+    setLoading(true);
+
+    try{
+
+        const response=await fetch(API_URL,{
+
+            method:"POST",
+
+            headers:{
+                "Content-Type":"application/json"
             },
 
-            body: JSON.stringify({
+            body:JSON.stringify({
 
-                prompt: plannerPrompt.value
+                prompt:plannerPrompt.value
 
             })
 
         });
 
-        const data = await response.json();
+        const data=await response.json();
 
-        if (data.success) {
+        if(data.success){
 
-            plannerResult.innerHTML = data.reply;
-
-        } else {
-
-            plannerResult.innerHTML = "❌ " + data.error;
+            plannerOutput.innerHTML=marked.parse(data.reply);
 
         }
 
-    } catch (err) {
+        else{
 
-        console.error(err);
+            plannerOutput.innerHTML=
+            `<p>❌ ${data.error}</p>`;
 
-        plannerResult.innerHTML = "❌ Unable to connect to AI Server.";
+        }
+
+    }
+
+    catch(error){
+
+        plannerOutput.innerHTML=
+        `<p>❌ Unable to connect to server.</p>`;
+
+        console.error(error);
+
+    }
+
+    finally{
+
+        setLoading(false);
 
     }
 
 }
 
-// Copy Plan
-copyPlan.addEventListener("click", () => {
+generateBtn.addEventListener("click",generatePlan);
 
-    navigator.clipboard.writeText(plannerResult.innerText);
+function setLoading(isLoading){
 
-    alert("✅ Plan copied!");
+    if(isLoading){
+
+        generateBtn.disabled=true;
+
+        generateBtn.innerHTML="⏳ Generating...";
+
+    }
+
+    else{
+
+        generateBtn.disabled=false;
+
+        generateBtn.innerHTML="🚀 Generate Plan";
+
+    }
+
+}
+
+/* ===================================
+   ACTION BUTTONS
+=================================== */
+
+const copyBtn = document.getElementById("copyBtn");
+const downloadBtn = document.getElementById("downloadBtn");
+const editBtn = document.getElementById("editBtn");
+
+/* ===========================
+   TOAST
+=========================== */
+
+function showToast(text){
+
+    const toast=document.getElementById("toast");
+
+    toast.innerHTML=text;
+
+    toast.classList.add("show");
+
+    setTimeout(()=>{
+
+        toast.classList.remove("show");
+
+    },2000);
+
+}
+
+/* ===========================
+   COPY
+=========================== */
+
+copyBtn.addEventListener("click",()=>{
+
+    const text=plannerOutput.innerText;
+
+    if(text.trim()==="") return;
+
+    navigator.clipboard.writeText(text);
+
+    showToast("✅ Plan Copied");
 
 });
 
-// Download Plan
-downloadPlan.addEventListener("click", () => {
+/* ===========================
+   DOWNLOAD
+=========================== */
 
-    const blob = new Blob([plannerResult.innerText], {
+downloadBtn.addEventListener("click",()=>{
 
-        type: "text/plain"
+    const text=plannerOutput.innerText;
+
+    if(text.trim()==="") return;
+
+    const blob=new Blob([text],{
+
+        type:"text/plain"
 
     });
 
-    const link = document.createElement("a");
+    const link=document.createElement("a");
 
-    link.href = URL.createObjectURL(blob);
+    link.href=URL.createObjectURL(blob);
 
-    link.download = "AI_Plan.txt";
+    link.download="BizPilot_Plan.txt";
 
     link.click();
+
+    URL.revokeObjectURL(link.href);
+
+    showToast("⬇ Plan Downloaded");
+
+});
+
+/* ===========================
+   EDIT
+=========================== */
+
+editBtn.addEventListener("click",()=>{
+
+    const text=plannerOutput.innerText;
+
+    if(text.trim()==="") return;
+
+    plannerPrompt.value=text;
+
+    plannerPrompt.focus();
+
+    showToast("✏ Plan loaded into editor");
+
+});
+
+/* ===========================
+   CTRL + ENTER
+=========================== */
+
+plannerPrompt.addEventListener("keydown",(e)=>{
+
+    if(e.key==="Enter" && e.ctrlKey){
+
+        e.preventDefault();
+
+        generatePlan();
+
+    }
+
+});
+
+/* ===========================
+   AUTO RESIZE
+=========================== */
+
+plannerPrompt.addEventListener("input",()=>{
+
+    plannerPrompt.style.height="auto";
+
+    plannerPrompt.style.height=plannerPrompt.scrollHeight+"px";
 
 });
