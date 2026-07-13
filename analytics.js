@@ -156,6 +156,61 @@ refreshBtn.addEventListener("click",()=>{
 });
 
 /* ===================================
+   CARD ANIMATION
+=================================== */
+
+const cards=document.querySelectorAll(".stat-card");
+
+cards.forEach((card,index)=>{
+
+    card.style.opacity="0";
+    card.style.transform="translateY(20px)";
+
+    setTimeout(()=>{
+
+        card.style.transition=".4s ease";
+        card.style.opacity="1";
+        card.style.transform="translateY(0)";
+
+    },index*120);
+
+});
+
+/* ===================================
+   LAST UPDATED
+=================================== */
+
+function updateTime(){
+
+    const footer=document.querySelector(".bottom-text");
+
+    const now=new Date();
+
+    footer.innerHTML=
+    `✨ Analytics updated automatically • Last updated: ${now.toLocaleTimeString()}`;
+
+}
+
+updateTime();
+
+setInterval(updateTime,1000);
+
+/* ===================================
+   PAGE INITIALIZATION
+=================================== */
+
+window.addEventListener("load",()=>{
+
+    loadAnalytics();
+
+    showToast("🚀 Analytics Ready");
+
+});
+
+console.log("✅ BizPilot Analytics Loaded Successfully");
+
+
+/* ===================================
    AUTO REFRESH
 =================================== */
 
@@ -164,3 +219,5 @@ setInterval(()=>{
     loadAnalytics();
 
 },30000);
+
+
